@@ -1,4 +1,6 @@
 package com.surli.surli_shinta_mvvm.ui
 
-class MainViewModel {
+import androidx.lifecycle.ViewModel
+
+class MainViewModel: ViewModel() {
 }
