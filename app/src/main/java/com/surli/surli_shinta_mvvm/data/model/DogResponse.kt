@@ -2,10 +2,8 @@ package com.surli.surli_shinta_mvvm.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class DogResponse(
-    @SerializedName("data")
-    val dogData: List<DogData>
-)
+class DogResponse :  ArrayList<DogData>()
+
 
 data class DogData(
     @SerializedName("breeds")

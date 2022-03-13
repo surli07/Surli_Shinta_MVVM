@@ -1,6 +1,7 @@
 package com.surli.surli_shinta_mvvm.data
 
 import android.content.Context
+import android.util.Log
 import com.surli.surli_shinta_mvvm.data.local.SearchDatabase
 import com.surli.surli_shinta_mvvm.data.model.Dog
 import com.surli.surli_shinta_mvvm.data.model.DogData
@@ -21,6 +22,7 @@ class MainRepository(context: Context) {
             result = try {
                 retrofit.getAllDogs().body()
             } catch (e: Exception) {
+                Log.d("Exception", e.message.toString())
                 null
             }
         }
@@ -31,7 +33,7 @@ class MainRepository(context: Context) {
         var successInsert: Boolean
         withContext(CoroutineScope(Dispatchers.IO).coroutineContext) {
             val dogs = characterData.map {
-                Dog(it.id.toLong(), it.url)
+                Dog(null, it.url)
             }
             successInsert = try {
                 database.dog().insertAllDogs(dogs)

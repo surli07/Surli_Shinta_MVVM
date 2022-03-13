@@ -7,7 +7,7 @@ import com.surli.surli_shinta_mvvm.data.MainRepository
 class MainViewModelFactory(
     private val repository: MainRepository
 ) : ViewModelProvider.NewInstanceFactory() {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         try {
             return modelClass.getDeclaredConstructor(
                 MainRepository::class.java

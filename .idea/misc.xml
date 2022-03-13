@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/OS/AndroidStudioProjects/Surli_Shinta_MVVM/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/OS/AndroidStudioProjects/Surli_Shinta_MVVM/app/src/main/res/layout/item_dog.xml" value="0.17962962962962964" />
+        <entry key="..\:/Users/OS/AndroidStudioProjects/Surli_Shinta_MVVM/app/src/main/res/layout/loading_dialog.xml" value="0.1" />
         <entry key="..\:/Users/Shinta/AndroidStudioProjects/Surli_Shinta_MVVM/app/src/main/res/drawable/ic_refresh.xml" value="0.1" />
         <entry key="..\:/Users/Shinta/AndroidStudioProjects/Surli_Shinta_MVVM/app/src/main/res/layout/activity_breeds_fragment.xml" value="0.1" />
         <entry key="..\:/Users/Shinta/AndroidStudioProjects/Surli_Shinta_MVVM/app/src/main/res/layout/activity_main.xml" value="0.12" />

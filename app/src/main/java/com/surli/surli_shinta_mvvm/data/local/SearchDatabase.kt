@@ -4,8 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.surli.surli_shinta_mvvm.data.model.Dog
 
-@Database(entities = [Character::class], version = 1)
+@Database(entities = [Dog::class], version = 1)
 abstract class  SearchDatabase : RoomDatabase() {
 
     abstract fun dog(): SearchImageDao
