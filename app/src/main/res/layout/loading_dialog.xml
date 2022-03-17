@@ -14,16 +14,16 @@
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/_10dp">
+            app:cardCornerRadius="10dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <ProgressBar
-                    android:layout_width="@dimen/_45dp"
-                    android:layout_height="@dimen/_45dp"
-                    android:layout_margin="@dimen/_10dp"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_margin="10dp"
                     android:background="@android:color/transparent"
                     android:indeterminate="true" />
 
@@ -32,9 +32,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="@dimen/_12dp"
-                    android:text="@string/loading"
-                    android:textSize="@dimen/_16sp" />
+                    android:layout_marginEnd="12dp"
+                    android:text="loading"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
