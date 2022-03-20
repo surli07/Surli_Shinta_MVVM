@@ -2,22 +2,21 @@ package com.surli.surli_shinta_mvvm.ui
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import com.surli.surli_shinta_mvvm.data.MainRepository
 import com.surli.surli_shinta_mvvm.data.adapter.MainAdapter
 import com.surli.surli_shinta_mvvm.data.dialog.CustomLoadingDialog
 import com.surli.surli_shinta_mvvm.databinding.ActivityMainBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity(), MainView {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: MainViewModel
-    private lateinit var loadingUI: CustomLoadingDialog
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,44 +24,39 @@ class MainActivity : AppCompatActivity(), MainView {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val factory = MainViewModelFactory(MainRepository(this))
-        viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
-        loadingUI = CustomLoadingDialog(this)
-
-
-
         binding.btnRefresh.setOnClickListener {
-            setupObserver()
+            getDog()
         }
         setupObserver()
     }
 
-    private fun setupObserver() {
-        CoroutineScope(Dispatchers.IO).launch {
+    private fun getDog() {
+        lifecycleScope.launch {
             viewModel.fetchAndLoadDogs()
         }
-        viewModel.databaseDog.observe(this) {
+    }
+
+    private fun setupObserver() {
+        getDog()
+
+        viewModel.dog.observe(this) {
             binding.recyclerDogs.apply {
                 layoutManager = GridLayoutManager(context, 3)
                 adapter = MainAdapter(it)
             }
         }
-    }
-
-    override fun showLoading() {
-        runOnUiThread {
-            loadingUI.show()
+        viewModel.message.observe(this) {
+            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         }
-
-    }
-
-    override fun hideLoading() {
-        runOnUiThread {
-            loadingUI.dismiss()
+        val loadingUI = CustomLoadingDialog(this)
+        viewModel.loading.observe(this) {
+            if (it) {
+                loadingUI.show()
+            } else {
+                loadingUI.hide()
+            }
         }
     }
 
-    override fun showMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-    }
+
 }

@@ -21,14 +21,14 @@ object DatabaseModule {
         return Room.databaseBuilder(
             application,
             SearchDatabase::class.java,
-            "my_database.db"
+            "search_database.db"
         ).build()
     }
 
     @Provides
     @Singleton
-    fun SearchImageDao(myDatabase: SearchDatabase): SearchImageDao {
-        return myDatabase.dog()
+    fun SearchImageDao(searchDatabase: SearchDatabase): SearchImageDao {
+        return searchDatabase.dog()
     }
 
 }
